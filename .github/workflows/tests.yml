@@ -22,7 +22,7 @@ jobs:
           python-version: "3.12"
 
       - name: Validate workflows
-        run: python tests/validate_workflows.py
+        run: python ai-factory-vendemais-main/ai-factory-vendemais-main/tests/validate_workflows.py
 
       - name: Test enrichment logic
-        run: python tests/test_enrichment_logic.py
+        run: python ai-factory-vendemais-main/ai-factory-vendemais-main/tests/test_enrichment_logic.py
