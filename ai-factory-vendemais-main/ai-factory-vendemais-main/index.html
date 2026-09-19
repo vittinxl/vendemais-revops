@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VendeMais | Enriquecimento de Leads</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #172033;
+            color: white;
+            padding: 22px 8%;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        header p {
+            margin-top: 5px;
+            color: #b9c3d4;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #5f6b7a;
+            font-size: 17px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccd3df;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #resultado {
+            display: none;
+            margin-top: 25px;
+            padding: 22px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        #resultado h3 {
+            margin-bottom: 15px;
+        }
+
+        .item {
+            margin: 9px 0;
+        }
+
+        .score {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>VendeMais</h1>
+    <p>Plataforma de enriquecimento e qualificação de leads</p>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h2>Enriquecimento de Leads</h2>
+        <p>
+            Analise informações de empresas e gere dados para apoiar
+            a qualificação comercial.
+        </p>
+    </section>
+
+    <section class="card">
+
+        <label for="empresa">Nome da empresa</label>
+
+        <input
+            type="text"
+            id="empresa"
+            placeholder="Ex.: Empresa Exemplo"
+        >
+
+        <button onclick="enriquecerLead()">
+            Enriquecer Lead
+        </button>
+
+        <div id="resultado">
+            <h3>Resultado do enriquecimento</h3>
+
+            <div class="item">
+                <strong>Empresa:</strong>
+                <span id="nomeEmpresa"></span>
+            </div>
+
+            <div class="item">
+                <strong>Segmento:</strong>
+                SaaS / Tecnologia
+            </div>
+
+            <div class="item">
+                <strong>Perfil de cliente ideal:</strong>
+                Alto potencial
+            </div>
+
+            <div class="item">
+                <strong>Stack tecnológica:</strong>
+                CRM, automação e ferramentas de análise
+            </div>
+
+            <div class="item">
+                <strong>Sinais de compra:</strong>
+                Expansão comercial e crescimento da operação
+            </div>
+
+            <div class="score">
+                ICP Score: <span id="score">82</span>/100
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    VendeMais — Projeto acadêmico de RevOps e automação de processos.
+</footer>
+
+<script>
+    function enriquecerLead() {
+
+        const empresa = document.getElementById("empresa").value.trim();
+
+        if (empresa === "") {
+            alert("Digite o nome de uma empresa.");
+            return;
+        }
+
+        document.getElementById("nomeEmpresa").textContent = empresa;
+
+        document.getElementById("resultado").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
