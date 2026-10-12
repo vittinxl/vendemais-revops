@@ -1,0 +1,15 @@
+# Segredos e variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Arquivos locais e logs
+*.log
+.DS_Store
+Thumbs.db
