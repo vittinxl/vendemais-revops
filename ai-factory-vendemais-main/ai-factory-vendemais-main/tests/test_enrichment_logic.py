@@ -11,6 +11,7 @@ Roda: python tests/test_enrichment_logic.py
 """
 import json
 import sys
+import re
 
 # ---------------------------------------------------------------------------
 # Logica sob teste (espelha o que o modulo OpenAI faz no Make/n8n)
@@ -25,9 +26,13 @@ SYSTEM_PROMPT = (
 def build_user_prompt(company_name, search_results, max_snippet=500):
     """Monta o prompt do usuario. Trunca snippets (a Joana NAO fazia isso -> custo)."""
     trimmed = [
-        {**r, "snippet": (r.get("snippet", "")[:max_snippet])}
-        for r in search_results
-    ]
+    {
+        **r,
+        "title": sanitize_text(r.get("title", "")),
+        "snippet": sanitize_text(r.get("snippet", "")[:max_snippet]),
+    }
+    for r in search_results
+]
     return (
         f"Você é um analista de inteligência de vendas. "
         f"Recebeu o nome da empresa: {company_name} "
@@ -50,7 +55,19 @@ def parse_fit_score(llm_raw):
         raise ValueError(f"icp_match_score fora da faixa 0-100: {score}")
     return score
 
-
+def sanitize_text(text):
+    """Remove e-mails e telefones comuns antes do envio do texto à IA."""
+    text = re.sub(
+        r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b",
+        "[EMAIL_REMOVIDO]",
+        text,
+    )
+    text = re.sub(
+        r"(?<!\w)(?:\+?55\s*)?(?:\(?\d{2}\)?\s*)?9?\d{4}[-.\s]?\d{4}(?!\w)",
+        "[TELEFONE_REMOVIDO]",
+        text,
+    )
+    return text
 # ---------------------------------------------------------------------------
 # LLM mockado
 # ---------------------------------------------------------------------------
@@ -105,6 +122,25 @@ expect(all(len(r["snippet"]) <= 500 for r in parsed_back), "snippets truncados a
 
 # 3) system prompt exige JSON
 expect("JSON" in SYSTEM_PROMPT, "system prompt exige resposta em JSON")
+
+# 3.1) e-mails e telefones são removidos antes do envio à IA
+sanitized = sanitize_text(
+    "Contato: maria@empresa.com, telefone (11) 98765-4321"
+)
+expect("[EMAIL_REMOVIDO]" in sanitized, "e-mail sanitizado")
+expect("[TELEFONE_REMOVIDO]" in sanitized, "telefone sanitizado")
+
+# 3.2) prompt não deve conter os dados pessoais originais
+private_search = [
+    {
+        "title": "Contato maria@empresa.com",
+        "link": "https://empresa.example",
+        "snippet": "Ligue para (11) 98765-4321 para falar com Maria",
+    }
+]
+private_prompt = build_user_prompt("Empresa Exemplo", private_search)
+expect("maria@empresa.com" not in private_prompt, "e-mail removido do prompt")
+expect("98765-4321" not in private_prompt, "telefone removido do prompt")
 
 # 4) parsing extrai fit-score inteiro 0-100 do LLM mockado
 score = parse_fit_score(mock_llm([SYSTEM_PROMPT, prompt]))
