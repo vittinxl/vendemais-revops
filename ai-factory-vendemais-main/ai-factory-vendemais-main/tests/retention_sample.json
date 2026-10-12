@@ -1,0 +1,13 @@
+
+[
+  {
+    "deal_id": "DEMO-001",
+    "company_name": "Empresa Antiga Fictícia",
+    "enriched_at": "2020-01-01T10:00:00Z"
+  },
+  {
+    "deal_id": "DEMO-002",
+    "company_name": "Empresa Recente Fictícia",
+    "enriched_at": "2099-01-01T10:00:00Z"
+  }
+]
