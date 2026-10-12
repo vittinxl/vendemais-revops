@@ -29,3 +29,5 @@ jobs:
 
       - name: Test enrichment logic
         run: python ai-factory-vendemais-main/ai-factory-vendemais-main/tests/test_enrichment_logic.py
+      - name: Test retention cleanup
+        run: cd ai-factory-vendemais-main/ai-factory-vendemais-main/tests && python -m unittest test_retention_cleanup.py
