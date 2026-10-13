@@ -1,0 +1,152 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VendeMais | Observabilidade</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #172033;
+    }
+    header {
+      background: #172033;
+      color: white;
+      padding: 28px 7%;
+    }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: #cbd5e1; }
+    main { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+    .notice {
+      background: #fff8e6;
+      border-left: 5px solid #d99a16;
+      padding: 16px;
+      border-radius: 6px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #17203312;
+    }
+    .card h2 { font-size: 16px; margin-top: 0; }
+    .value { font-size: 25px; font-weight: bold; margin: 14px 0; }
+    .muted { color: #596579; font-size: 14px; line-height: 1.5; }
+    .section { margin-top: 30px; }
+    a { color: #175cd3; }
+    .link {
+      display: inline-block;
+      margin: 8px 12px 0 0;
+      padding: 10px 14px;
+      background: white;
+      border: 1px solid #d5dbe5;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    footer {
+      padding: 25px;
+      text-align: center;
+      color: #596579;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VendeMais — Observabilidade</h1>
+    <p>Painel de acompanhamento operacional do projeto RevOps</p>
+  </header>
+
+  <main>
+    <div class="notice">
+      <strong>Limitação da demonstração:</strong>
+      este painel é estático. A aplicação ainda não coleta métricas
+      reais de produção. Os indicadores abaixo estão marcados como
+      indisponíveis para evitar apresentar dados fictícios como reais.
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Latência p50 / p95 / p99</h2>
+        <div class="value">N/D</div>
+        <p class="muted">Requer medição do tempo de cada execução.</p>
+      </section>
+
+      <section class="card">
+        <h2>Custo por execução</h2>
+        <div class="value">N/D</div>
+        <p class="muted">Requer integração real e registro de consumo.</p>
+      </section>
+
+      <section class="card">
+        <h2>Taxa de erro</h2>
+        <div class="value">N/D</div>
+        <p class="muted">Requer registro das execuções e das falhas.</p>
+      </section>
+
+      <section class="card">
+        <h2>Leads processados</h2>
+        <div class="value">N/D</div>
+        <p class="muted">Requer contagem das execuções reais do fluxo.</p>
+      </section>
+
+      <section class="card">
+        <h2>Qualidade do enriquecimento</h2>
+        <div class="value">N/D</div>
+        <p class="muted">Requer critérios de qualidade e validação dos resultados.</p>
+      </section>
+
+      <section class="card">
+        <h2>Alerta operacional</h2>
+        <div class="value">Configurado</div>
+        <p class="muted">
+          Notificações do GitHub Actions por e-mail para falhas
+          de workflows. Não monitora diretamente as métricas de negócio.
+        </p>
+      </section>
+    </div>
+
+    <section class="section">
+      <h2>Execuções e validações</h2>
+      <p class="muted">
+        Consulte o histórico real dos workflows do repositório.
+        O status deve ser verificado na página de execuções.
+      </p>
+      <a class="link"
+         href="https://github.com/vittinxl/vendemais-revops/actions/workflows/tests.yml">
+        Ver testes automatizados
+      </a>
+      <a class="link"
+         href="https://github.com/vittinxl/vendemais-revops/actions/workflows/deploy.yml">
+        Ver publicações do site
+      </a>
+    </section>
+
+    <section class="section">
+      <h2>Próximas melhorias</h2>
+      <ul>
+        <li>Instrumentar tempos de execução e percentis de latência.</li>
+        <li>Registrar erros, volume processado e custo por execução.</li>
+        <li>Definir limites de alerta para os indicadores de negócio.</li>
+        <li>Integrar o painel a uma fonte real de métricas.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    VendeMais RevOps — Painel demonstrativo de observabilidade
+  </footer>
+</body>
+</html>
+```
