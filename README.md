@@ -108,3 +108,14 @@ A documentação do projeto está organizada em `ai-factory-vendemais-main/ai-fa
 - Automatizar a retenção nos sistemas reais, após validação.
 - Validar a sanitização com casos adicionais e dados representativos.
 - Revisar a documentação e os controles antes de qualquer uso com dados pessoais reais.
+
+
+## Painel de observabilidade
+
+Acesse o [Dashboard de Observabilidade do VendeMais](https://vittinxl.github.io/vendemais-revops/dashboard.html).
+
+O painel apresenta os cinco indicadores definidos para acompanhamento operacional: latência, custo por execução, taxa de erro, volume de leads processados e qualidade do enriquecimento.
+
+**Limitação atual:** o painel é estático e ainda não recebe métricas reais da aplicação. Os indicadores indisponíveis estão identificados como N/D. O alerta configurado cobre falhas dos workflows do GitHub Actions por meio de notificações do GitHub e por e-mail.
+
+Consulte também o [documento do alerta operacional](ai-factory-vendemais-main/ai-factory-vendemais-main/docs/alerta-operacional.md).
