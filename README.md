@@ -119,3 +119,11 @@ O painel apresenta os cinco indicadores definidos para acompanhamento operaciona
 **Limitação atual:** o painel é estático e ainda não recebe métricas reais da aplicação. Os indicadores indisponíveis estão identificados como N/D. O alerta configurado cobre falhas dos workflows do GitHub Actions por meio de notificações do GitHub e por e-mail.
 
 Consulte também o [documento do alerta operacional](ai-factory-vendemais-main/ai-factory-vendemais-main/docs/alerta-operacional.md).
+
+## Otimização mensurável
+
+Foi implementada a sanitização de e-mails e telefones nos textos usados para construir o prompt enviado à IA, acompanhada de testes automatizados específicos.
+
+A melhoria foi validada por testes funcionais. Ainda não existem medições de redução de latência ou custo em produção, pois a demonstração não possui instrumentação real.
+
+Consulte a [documentação da otimização mensurável](ai-factory-vendemais-main/ai-factory-vendemais-main/docs/otimizacao-mensuravel.md) para ver a comparação antes/depois, as evidências e as limitações.
